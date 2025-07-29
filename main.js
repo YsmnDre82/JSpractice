@@ -1,15 +1,36 @@
-const person = {};
+const orderList = document.getElementById("ordersUl");
+const drinkText = document.getElementById("drinkText");
+const errorBox = document.getElementById("errorMsg");
+const customerName = document.getElementById("nameInput");
+const drink = document.getElementById("drinkSelect");
 
-person.name = prompt("نام شما چیست؟");
-person.age = prompt("سن شما چند سال است؟");
-person.city = prompt("کدام شهر زندگی میکنید؟");
-person.hobbies = prompt("سه تا از علایق خود را بنویسید").split(",");
+function submitOrder() {
+  const customerNameValue = customerName.value.trim();
+  const drinkValue = drink.value;
 
+  if (customerNameValue === "" || !drinkValue) {
+    errorBox.innerText = "لطفاً نام و نوشیدنی را وارد کنید!";
+  } else {
+    errorBox.textContent = ""
+    drinkText.innerText = `انتخاب شما: ${drinkValue}`;
 
-let info = `اطلاعات وارد شده:
-نام: ${person.name}
-سن: ${person.age}
-شهر: ${person.city}
-علایق: ${person.hobbies.join("-")}`;
+    // ایجاد یک آیتم لیست جدید
+    const newOrder = document.createElement("li");
+    newOrder.innerText = `👤 ${customerNameValue} - 🍹 ${drinkValue}`;
+    orderList.appendChild(newOrder);
 
-alert(info);
+    // پاک کردن ورودی‌ها
+    customerName.value = "";
+    drink.value = "";
+  }
+}
+
+function toggleTheme() {
+  const card = document.getElementById("drinkCard");
+  card.classList.toggle("dark");
+}
+
+function reset() {
+//   orderList.innerHTML = ""
+    orderList.replaceChildren();
+}

@@ -1,15 +1,15 @@
-var browser = prompt("please enter your computer browser:");
+const person = {};
 
-switch (browser) {
-    case "edge":
-        alert("you've got the Edge!");
-        break;
-    case "Chrom":    // if (browser == "Chrome" // browser == "FireFox"){}
-    case "FireFox":
-    case "Safari":
-    case "Opera":
-        alert("Okay we support these browsers too");
-    default:
-        alert("we hope tjat this page looks OK!")
-        break;
-}
+person.name = prompt("نام شما چیست؟");
+person.age = prompt("سن شما چند سال است؟");
+person.city = prompt("کدام شهر زندگی میکنید؟");
+person.hobbies = prompt("سه تا از علایق خود را بنویسید").split(",");
+
+
+let info = `اطلاعات وارد شده:
+نام: ${person.name}
+سن: ${person.age}
+شهر: ${person.city}
+علایق: ${person.hobbies.join("-")}`;
+
+alert(info);

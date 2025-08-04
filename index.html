@@ -5,17 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
-    <title>practiceJS</title>
+    <title>form project</title>
 </head>
 
-<body dir="rtl">
-    <div class="mytext">
-        دوره مقدماتی جاوااسکریپت
+<body>
+  <div class="container">
+        <h2>فرم ثبت اطلاعات کاربران</h2>
+        <form id="userForm">
+            <input type="text" id="name" placeholder="نام" required />
+            <input type="text" id="family" placeholder="نام خانوادگی" required />
+            <input type="email" id="email" placeholder="ایمیل" required />
+            <input type="text" id="job" placeholder="شغل" />
+            <input type="tel" id="phone" placeholder="شماره تماس" />
+
+            <select id="gender">
+                <option value="">جنسیت را انتخاب کنید</option>
+                <option value="مرد">مرد</option>
+                <option value="زن">زن</option>
+            </select>
+
+            <button type="submit">افزودن</button>
+        </form>
+
+        <div class="buttons">
+            <button id="showModal">نمایش همه کاربران</button>
+            <button id="findByEmail">پیدا کردن با ایمیل</button>
+            <button id="checkIfAllHaveJob">آیا همه شاغل‌اند؟</button>
+            <button id="checkIfAnyIsMale">آیا حداقل یک مرد هست؟</button>
+        </div>
     </div>
 
-     <input type="text" id="inputText" placeholder="متنی وارد کنید">
-        <button onclick="analyzeText()">تحلیل متن</button>
-        <div id="output"></div>
+    <div id="overlay" class="overlay"></div>
+    <div id="modal" class="modal"></div>
  
     <script src="/main.js"></script>
 </body>

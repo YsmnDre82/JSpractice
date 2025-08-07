@@ -9,7 +9,7 @@ const modal = document.getElementById("modal");
 const overlay = document.getElementById("overlay");
 
 let people = [];
-
+// افزودن کاربر جدید به لیست
 form.addEventListener("submit", function (e) {
   e.preventDefault()
 
@@ -32,6 +32,7 @@ form.addEventListener("submit", function (e) {
 
 })
 
+// نمایش همه کاربران
 document.getElementById("showModal").addEventListener("click", () => {
   if (people.length === 0) {
     modal.innerHTML = `<h3>هنوز کاربری ثبت نشده است.</h3> `
@@ -39,9 +40,9 @@ document.getElementById("showModal").addEventListener("click", () => {
     modal.innerHTML = `<h3>لیست کاربران:</h3>`;
     const list = document.createElement("ul");
 
-    people.map((person, index) => {
+    people.forEach((person, index) => {
 
-      const { name,family,email,job,phone,gender } = person
+      const { name, family, email, job, phone, gender } = person
 
       const li = document.createElement("li");
       li.innerText = `${index + 1} . ${name} ${family}
@@ -50,7 +51,9 @@ document.getElementById("showModal").addEventListener("click", () => {
        تلفن: ${phone || '---'} 
        جنسیت: ${gender || '---'}`;
       list.appendChild(li)
+      console.log(list);
     })
+
 
     modal.appendChild(list);
   }
@@ -62,7 +65,6 @@ document.getElementById("showModal").addEventListener("click", () => {
 
 })
 
-
 // بستن مدال با کلیک روی پس‌زمینه
 overlay.addEventListener("click", () => {
   overlay.style.opacity = "0";
@@ -70,3 +72,45 @@ overlay.addEventListener("click", () => {
   modal.style.opacity = "0";
   modal.style.visibility = "hidden";
 });
+
+// پیدا کردن با ایمیل
+
+document.getElementById("findByEmail").addEventListener("click", () => {
+  const emailToFind = prompt("ایمیل مورد نظر را وارد کنید:");
+  const person = people.filter(p => p.email === emailToFind.trim())
+
+  if (person.length > 0) {
+    const { name, family, job, phone, gender } = person
+    modal.innerHTML = `
+       <h3>فرد یافت شد:</h3>
+       <p>نام: ${name}</p>
+       <p>نام خانوادگی: ${family}</p>
+       <p>شغل: ${job}</p>
+       <p>شماره تماس: ${phone}</p>
+       <p>جنسیت: ${gender}</p>
+     `;
+  } else {
+    modal.innerHTML = `<p>فردی با این ایمیل یافت نشد.</p>`;
+  }
+
+  overlay.style.opacity = "1";
+  overlay.style.visibility = "visible";
+  modal.style.opacity = "1";
+  modal.style.visibility = "visible";
+})
+
+
+// آیا همه شاغلند 
+
+document.getElementById("checkIfAllHaveJob").addEventListener("click", () => {
+
+  const allHaveJob = people.every(p => p.job.trim() !== "");
+  modal.innerHTML = allHaveJob
+    ? "<p>✅ همه افراد دارای شغل هستند.</p>"
+    : "<p>❌ برخی افراد شغل ثبت نکرده‌اند.</p>";
+
+  overlay.style.opacity = "1";
+  overlay.style.visibility = "visible";
+  modal.style.opacity = "1";
+  modal.style.visibility = "visible";
+})

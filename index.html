@@ -5,40 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
-    <title>form project</title>
+    <title>JS project</title>
 </head>
 
 <body>
-  <div class="container">
-        <h2>فرم ثبت اطلاعات کاربران</h2>
-        <form id="userForm">
-            <input type="text" id="name" placeholder="نام" />
-            <input type="text" id="family" placeholder="نام خانوادگی" />
-            <input type="email" id="email" placeholder="ایمیل" />
-            <input type="text" id="job" placeholder="شغل" />
-            <input type="tel" id="phone" placeholder="شماره تماس" />
 
-            <select id="gender">
-                <option value="">جنسیت را انتخاب کنید</option>
-                <option value="مرد">مرد</option>
-                <option value="زن">زن</option>
-            </select>
+    <h2>لیست کاربران</h2>
 
-            <button type="submit">افزودن</button>
-        </form>
+    <!-- فرم اضافه کردن کاربر -->
+    <input type="text" id="name" placeholder="نام">
+    <input type="text" id="email" placeholder="ایمیل">
+    <button onclick="addUser()">افزودن کاربر</button>
 
-        <div class="buttons">
-            <button id="showModal">نمایش همه کاربران</button>
-            <button id="findByEmail">پیدا کردن با ایمیل</button>
-            <button id="checkIfAllHaveJob">آیا همه شاغل‌اند؟</button>
-            <button id="checkIfAnyIsMale">آیا حداقل یک مرد هست؟</button>
-        </div>
-    </div>
+    <br><br>
+    <button onclick="loadUsers()">نمایش کاربران</button>
 
-    <div id="overlay" class="overlay"></div>
-    <div id="modal" class="modal"></div>
- 
-    <script src="/main.js"></script>
+    <table id="table">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام</th>
+                <th>تلفن</th>
+                <th>ایمیل</th>
+                <th>آدرس</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <script src="/script.js"></script>
 </body>
 
 </html>

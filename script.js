@@ -1,106 +1,44 @@
-const tbody = document.getElementById("tbody");
+const addButtons = document.querySelectorAll(".add-to-cart");
+const cartItems = document.querySelector(".cart-items");
+const totalPriceElement = document.getElementById("total-price");
 
-// واکشی کاربران
-async function loadUsers() {
-  try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    if (!res.ok) throw new Error(`خطا در واکشی کاربران: ${res.status}`);
-    const data = await res.json();
+let total = 0;
+let cart = []; // آرایه برای ذخیره محصولات
 
-    document.getElementById("table").style.opacity = "1";
-    tbody.innerHTML = "";
-    data.forEach(user => {
-      tbody.innerHTML += `<tr id="user-${user.id}">
-        <td>${user.id}</td>
-        <td>${user.name}</td>
-        <td>${user.phone}</td>
-        <td>${user.email}</td>
-        <td>${user.address.city}, ${user.address.street}</td>
-        <td>
-          <button onclick="deleteUser(${user.id})">حذف</button>
-          <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')">ویرایش</button>
-        </td>
-      </tr>`;
-    });
-  } catch (error) {
-    alert("❌ خطا در بارگذاری کاربران: " + error.message);
-  }
-}
+addButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const product = button.parentElement;
+    const name = product.querySelector("h3").textContent;
+    const price = parseInt(product.querySelector(".price").dataset.price);
 
-// اضافه کردن کاربر
-async function addUser() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
+    // چک کن آیا محصول از قبل تو سبد هست یا نه
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
 
-  try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users', {
-      method: 'POST',
-      body: JSON.stringify({ name, email }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' }
-    });
+    // آپدیت نمایش سبد خرید
+    renderCart();
+  });
+});
 
-    if (!res.ok) throw new Error(`خطا در افزودن کاربر: ${res.status}`);
+function renderCart() {
+  cartItems.innerHTML = ""; // پاک‌کردن لیست قبلی
+  total = 0;
 
-    const user = await res.json();
+  cart.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.name} × ${item.quantity}`;
+    const itemTotal = item.price * item.quantity;
+    const priceSpan = document.createElement("span");
+    priceSpan.textContent = itemTotal.toLocaleString() + " تومان";
+    li.appendChild(priceSpan);
+    cartItems.appendChild(li);
 
-    alert("✅ کاربر با موفقیت ارسال شد (ولی ذخیره نمی‌شود چون API تستی است)");
-    console.log("POST response:", user);
+    total += itemTotal;
+  });
 
-    tbody.innerHTML += `<tr id="user-${user.id}">
-      <td>${user.id}</td>
-      <td>${user.name}</td>
-      <td></td>
-      <td>${user.email}</td>
-      <td></td>
-      <td><button onclick="deleteUser(${user.id})">حذف</button></td>
-    </tr>`;
-  } catch (error) {
-    alert("❌ خطا در افزودن کاربر: " + error.message);
-  }
-}
-
-// حذف کاربر
-async function deleteUser(id) {
-  try {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-      method: 'DELETE'
-    });
-
-    if (!res.ok) throw new Error(`خطا در حذف کاربر: ${res.status}`);
-
-    alert(`✅ کاربر با شناسه ${id} حذف شد (فقط در ظاهر، چون API واقعی نیست)`);
-    loadUsers(); // بازخوانی لیست
-  } catch (error) {
-    alert("❌ خطا در حذف کاربر: " + error.message);
-  }
-}
-
-// ویرایش کاربر
-async function editUser(id, oldName, oldEmail) {
-  const newName = prompt("نام جدید را وارد کنید:", oldName);
-  const newEmail = prompt("ایمیل جدید را وارد کنید:", oldEmail);
-
-  if (!newName || !newEmail) {
-    alert("❌ ورودی نامعتبر بود");
-    return;
-  }
-
-  try {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({ name: newName, email: newEmail }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' }
-    });
-
-    if (!res.ok) throw new Error(`خطا در ویرایش کاربر: ${res.status}`);
-
-    const updated = await res.json();
-
-    alert("✅ ویرایش انجام شد (نمایشی)");
-    const row = document.getElementById(`user-${id}`);
-    row.children[1].textContent = updated.name;
-    row.children[3].textContent = updated.email;
-  } catch (error) {
-    alert("❌ خطا در ویرایش کاربر: " + error.message);
-  }
+  totalPriceElement.textContent = total.toLocaleString();
 }

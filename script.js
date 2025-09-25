@@ -72,12 +72,9 @@
 
 
 
-let products = [
-    {id:1 , name : "گوشی" , price : 2000000},
-    {id:2 , name : "لپ تاپ" , price : 150000000},
-    {id:3 , name : "هدفون" , price : 80000},
-];
+let user = {name : "yasi" , age : 22};
 
-products.forEach(products => {
-    console.log(`${products.name} - ${products.price} تومان`);
-});
+let {name , age } = user;
+
+console.log(name);
+console.log(age);

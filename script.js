@@ -71,10 +71,17 @@
 
 
 
-
+// spreed Operator
 let user = {name : "yasi" , age : 22};
+let newUser = {...user, city: "hamedan"};
+console.log(newUser);
 
-let {name , age } = user;
 
+
+//Rest operator
+
+let {name, ...other} = newUser;
 console.log(name);
-console.log(age);
+console.log(other);
+
+

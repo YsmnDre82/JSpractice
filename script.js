@@ -74,14 +74,9 @@
 
 let user = {
     name : "yasi",
-    age : 22
-}
-
-// user.city = "hamedan";
-// user["job"] = "frontend developer";
-
-// user.age = 24;
-
-// delete user.city;
-
-console.log(user);
+    age : 22,
+    sayHello: function () {
+        console.log("سلام! من" + this.name + " هستم");
+    }
+};
+user.sayHello()

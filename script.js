@@ -72,11 +72,14 @@
 
 
 
-let user = {
-    name : "yasi",
-    age : 22,
-    sayHello: function () {
-        console.log("سلام! من" + this.name + " هستم");
+let calculator = {
+    add: function(a,b){
+        return a + b;
+    },
+    multiply: function(a,b){
+        return a * b;
     }
 };
-user.sayHello()
+
+console.log(calculator.add(3,5));
+console.log(calculator.multiply(4,6));

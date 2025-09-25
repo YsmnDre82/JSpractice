@@ -2,6 +2,8 @@
 // const cartItems = document.querySelector(".cart-items");
 // const totalPriceElement = document.getElementById("total-price");
 
+// const { use } = require("react");
+
 // let total = 0;
 // let cart = []; // آرایه برای ذخیره محصولات
 
@@ -73,20 +75,13 @@
 
 
 let user = {
-    name : "yasi",
-    age : 22,
-    city : "hamedan"
-}
+  name: "یاسی",
+  age: 23,
+  address: {
+    city: "همدان",
+    street: "خیابان آزادی",
+    zip: 12345
+  }
+};
 
-// console.log(Object.keys(user));               همه کلید های ابجکت رو به صورت ارایه برمیگردونه
-// console.log(Object.values(user));              همه مقدار های ابجکت رو برمیگردونه
-
-// console.log(Object.entries(user));             هم کلید هم مقدار رو به صورت ارایه های دوبل برمیگرونه
-
-// for(let key in user){                             حلقه ی مخصوص ابجکت هاست
-//     console.log(key, ":", user[key]);
-// }
-
-
-// console.log(user.hasOwnProperty("age")); true                            چک میکنه که ابجکت واقعا اون ویژگی هارو داره یا نه
-// console.log(user.hasOwnProperty("email")); false
+console.log(user.address.city);

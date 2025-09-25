@@ -72,14 +72,21 @@
 
 
 
-let calculator = {
-    add: function(a,b){
-        return a + b;
-    },
-    multiply: function(a,b){
-        return a * b;
-    }
-};
+let user = {
+    name : "yasi",
+    age : 22,
+    city : "hamedan"
+}
 
-console.log(calculator.add(3,5));
-console.log(calculator.multiply(4,6));
+// console.log(Object.keys(user));               همه کلید های ابجکت رو به صورت ارایه برمیگردونه
+// console.log(Object.values(user));              همه مقدار های ابجکت رو برمیگردونه
+
+// console.log(Object.entries(user));             هم کلید هم مقدار رو به صورت ارایه های دوبل برمیگرونه
+
+// for(let key in user){                             حلقه ی مخصوص ابجکت هاست
+//     console.log(key, ":", user[key]);
+// }
+
+
+// console.log(user.hasOwnProperty("age")); true                            چک میکنه که ابجکت واقعا اون ویژگی هارو داره یا نه
+// console.log(user.hasOwnProperty("email")); false

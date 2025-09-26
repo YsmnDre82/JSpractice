@@ -71,21 +71,12 @@
 
 
 
-// انتخاب دکمه
-const btn = document.getElementById("changBtn");
 
-// گوش دادن به کلیک دکمه
-btn.addEventListener("click", function(){
-    // تغییر متن h1
-    const title = document.getElementById("title");
-    title.innerText = "سلام یاسی جوون"
+const addBtn = document.getElementById("addBtn");
+const container = document.getElementById("container");
 
-    // تغییر html داخل div
-    const box = document.getElementById("box");
-    box.innerHTML = "<b>یاسی خیلی جذابه</b>"
-
-    // تغییر استایل
-    box.style.color = "white"; 
-    box.style.background = "purple"; 
-    box.style.borderRadius = "10px"; 
+addBtn.addEventListener("click", function(){
+    const p = document.createElement("p");
+    p.innerText = "ساختن یه متن جدید";
+    container.appendChild(p)
 });

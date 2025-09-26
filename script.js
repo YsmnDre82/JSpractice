@@ -71,17 +71,21 @@
 
 
 
-// spreed Operator
-let user = {name : "yasi" , age : 22};
-let newUser = {...user, city: "hamedan"};
-console.log(newUser);
+// انتخاب دکمه
+const btn = document.getElementById("changBtn");
 
+// گوش دادن به کلیک دکمه
+btn.addEventListener("click", function(){
+    // تغییر متن h1
+    const title = document.getElementById("title");
+    title.innerText = "سلام یاسی جوون"
 
+    // تغییر html داخل div
+    const box = document.getElementById("box");
+    box.innerHTML = "<b>یاسی خیلی جذابه</b>"
 
-//Rest operator
-
-let {name, ...other} = newUser;
-console.log(name);
-console.log(other);
-
-
+    // تغییر استایل
+    box.style.color = "white"; 
+    box.style.background = "purple"; 
+    box.style.borderRadius = "10px"; 
+});

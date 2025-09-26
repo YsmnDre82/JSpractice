@@ -72,11 +72,9 @@
 
 
 
-const addBtn = document.getElementById("addBtn");
-const container = document.getElementById("container");
+const title = document.getElementById("title");
+const btn = document.getElementById("btn");
 
-addBtn.addEventListener("click", function(){
-    const p = document.createElement("p");
-    p.innerText = "ساختن یه متن جدید";
-    container.appendChild(p)
-});
+btn.addEventListener("click", function(){
+    title.classList.toggle("active")
+})

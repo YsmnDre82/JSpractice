@@ -72,9 +72,38 @@
 
 
 
-const title = document.getElementById("title");
-const btn = document.getElementById("btn");
+// const input = document.getElementById("username");
+// const btn = document.getElementById("btn");
+// const result = document.getElementById("result");
 
-btn.addEventListener("click", function(){
-    title.classList.toggle("active")
-})
+// btn.addEventListener("click", function(){
+//     let name = input.value;//با value مقدار داخل input رو میگیریم
+//     result.textContent = `سلام ${name} خوش اومدی`;
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+const user = document.getElementById("username");
+const pass = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const msg = document.getElementById("msg");
+
+
+loginBtn.addEventListener("click", function(){
+    if(user.value == "yasi" && pass.value == "1234"){
+        msg.textContent = "ورود موفقیت امیز بود";
+        msg.style.color = "green"
+    }else{
+        msg.textContent = "نام کاربری یا رمز عبور اشتباهه"
+        msg.style.color = "red"
+    }
+});

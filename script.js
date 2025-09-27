@@ -72,10 +72,14 @@
 
 
 
-const form = document.getElementById("loginForm");
-const msg = document.getElementById("msg");
+const addBtn = document.getElementById("addBtn");
+const container = document.getElementById("container");
 
-form.addEventListener("submit", function(e){
-    e.preventDefault();
-    msg.textContent = "فرم با موفقیت ارسال شد"
+addBtn.addEventListener("click", () => {
+  const p = document.createElement("p");      // 1. یک <p> جدید می‌سازیم
+  p.innerText = "این یک پاراگراف جدید است ✨"; // 2. متن رو می‌ذاریم
+  p.classList.add("new-paragraph");          // 3. (اختیاری) کلاس برای استایل
+  // حذف با کلیک روی خود پاراگراف:
+  p.addEventListener("click", () => p.remove());
+  container.appendChild(p);                  // 4. به کانتینر اضافه می‌کنیم
 });
